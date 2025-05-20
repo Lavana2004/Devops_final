@@ -11,7 +11,7 @@ pipeline {
         stage('Checkout Code') {
             steps {
                 echo 'Checking out code...'
-                // git url: 'https://your.repo.url.git'  // Uncomment & update if pulling from git
+                git url: 'https://github.com/Lavana2004/Devops_final.git'
             }
         }
 
@@ -20,7 +20,7 @@ pipeline {
                 script {
                     dir('consultancy_final_draft/project-2') {
                         echo "Building Docker image: ${DOCKER_IMAGE}"
-                        sh "docker build -t ${DOCKER_IMAGE} ."
+                        bat "docker build -t %DOCKER_IMAGE% ."
                     }
                 }
             }
@@ -30,9 +30,9 @@ pipeline {
             steps {
                 script {
                     echo "Stopping and removing existing container if it exists..."
-                    sh """
-                        docker stop ${CONTAINER_NAME} || true
-                        docker rm ${CONTAINER_NAME} || true
+                    bat """
+                        docker stop %CONTAINER_NAME% || exit 0
+                        docker rm %CONTAINER_NAME% || exit 0
                     """
                 }
             }
@@ -42,9 +42,7 @@ pipeline {
             steps {
                 script {
                     echo "Deploying new container: ${CONTAINER_NAME}"
-                    sh """
-                        docker run -d --name ${CONTAINER_NAME} -p ${APP_PORT}:${APP_PORT} ${DOCKER_IMAGE}
-                    """
+                    bat "docker run -d --name %CONTAINER_NAME% -p %APP_PORT%:%APP_PORT% %DOCKER_IMAGE%"
                 }
             }
         }
