@@ -3,12 +3,11 @@ pipeline {
 
     stages {
         stage('Checkout Code') {
-            steps {
+            steps{
                 echo 'Checking out code...'
                 git branch: 'main', url: 'https://github.com/Lavana2004/Devops_final.git'
             }
         }
-
         stage('Build Project') {
             steps {
                 echo 'Building the project...'
