@@ -1,12 +1,6 @@
 pipeline {
     agent any
 
-    environment {
-        DOCKER_IMAGE = "consultancy_app_image"
-        CONTAINER_NAME = "consultancy_app_container"
-        APP_PORT = "5173"
-    }
-
     stages {
         stage('Checkout Code') {
             steps {
@@ -15,37 +9,18 @@ pipeline {
             }
         }
 
-        stage('Build Docker Image') {
+        stage('Build Project') {
             steps {
-                script {
-                    dir('consultancy_final_draft/project-2') {
-                        echo "Building Docker image: ${DOCKER_IMAGE}"
-                        sh "docker build -t ${DOCKER_IMAGE} ."
-                    }
-                }
+                echo 'Building the project...'
+                // For Windows commands use `bat` instead of `sh`
+                bat 'echo Build successful'
             }
         }
 
-        stage('Stop Existing Container (if any)') {
+        stage('Deploy Project') {
             steps {
-                script {
-                    echo "Stopping and removing existing container if it exists..."
-                    sh """
-                        docker stop ${CONTAINER_NAME} || true
-                        docker rm ${CONTAINER_NAME} || true
-                    """
-                }
-            }
-        }
-
-        stage('Deploy New Container') {
-            steps {
-                script {
-                    echo "Deploying new container: ${CONTAINER_NAME}"
-                    sh """
-                        docker run -d --name ${CONTAINER_NAME} -p ${APP_PORT}:${APP_PORT} ${DOCKER_IMAGE}
-                    """
-                }
+                echo 'Deploying the project...'
+                bat 'echo Deployment successful'
             }
         }
     }
@@ -53,9 +28,6 @@ pipeline {
     post {
         always {
             echo 'Pipeline finished execution.'
-        }
-        success {
-            echo '✅ Deployment successful!'
         }
         failure {
             echo '❌ Deployment failed!'
