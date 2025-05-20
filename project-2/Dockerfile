@@ -1,21 +1,17 @@
-# Use Node.js official base image
+# Dockerfile
 FROM node:20-alpine
 
-# Set working directory inside container
 WORKDIR /app
 
-# Copy package files and install dependencies
+# Install dependencies
 COPY package*.json ./
 RUN npm install
 
-# Copy project files into container
+# Copy your frontend source code
 COPY . .
 
-# Build the Vite project
-RUN npm run build
-
-# Expose the app's port (adjust if different)
+# Expose Vite dev port
 EXPOSE 5173
 
-# Command to start the server
-CMD ["node", "server.js"]
+# Run Vite dev server
+CMD ["npm", "run", "dev"]
