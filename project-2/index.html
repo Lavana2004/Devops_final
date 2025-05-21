@@ -4,9 +4,10 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>E6 Car Spa - Premium Car Services </title>
+    <title>E6 Car Spa - Premium Car Services</title>
     <meta name="description" content="Book premium car services at E6 Car Spa. Car wash, engine service, and more by expert mechanics." />
     <style>
+      /* Animation */
       @keyframes fadeInUp {
         from {
           opacity: 0;
@@ -16,6 +17,61 @@
           opacity: 1;
           transform: translateY(0);
         }
+      }
+
+      /* Global styles */
+      body {
+        margin: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f9f9f9;
+        color: #333;
+      }
+
+      /* Smooth fade for the root app */
+      #root {
+        animation: fadeInUp 0.8s ease forwards;
+        padding: 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      /* Example container style for your content (if needed later) */
+      .container {
+        background: #fff;
+        border-radius: 12px;
+        padding: 24px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        animation: fadeInUp 0.6s ease forwards;
+      }
+
+      /* Buttons */
+      button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+      }
+
+      /* Headings */
+      h1, h2, h3 {
+        color: #222;
+      }
+
+      /* Links */
+      a {
+        color: #007bff;
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
       }
     </style>
   </head>
